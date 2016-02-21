@@ -22,8 +22,11 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             
-            profileView.setImageWithURL(NSURL(string: tweet.user!.profileUrlString!)!)
-        //  nameLabel.text = "@" + ((User.currentUser?.screenname)! as String)
+        profileView.setImageWithURL(NSURL(string: tweet.user!.profileUrlString!)!)
+        usernameLabel.text = tweet.user!.name as? String
+        nameLabel.text = "@\(tweet.user!.screenname!)"
+        
+        
             
         }
     }
@@ -31,6 +34,8 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        profileView.layer.cornerRadius = 5
+        profileView.clipsToBounds = true
         
     }
     
