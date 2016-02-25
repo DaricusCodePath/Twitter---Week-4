@@ -33,6 +33,7 @@ class TweetCell: UITableViewCell {
         usernameLabel.text = tweet.user!.name as? String
         nameLabel.text = "@\(tweet.user!.screenname!)"
         tweetLabel.text = tweet.text as? String
+        tweetLabel.sizeToFit()
         timeLabel.text = tweet.timeSince
         
         
