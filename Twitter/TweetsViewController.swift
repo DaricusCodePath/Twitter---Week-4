@@ -72,7 +72,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         if segue.identifier == "ReplyPush"
         {
-            let cell = sender as! TweetCell
+            let cell = sender!.superview!!.superview as! TweetCell
             let tweet = cell.tweet
             let destinationViewController = segue.destinationViewController as! ReplyTweetViewController
             destinationViewController.tweet = tweet

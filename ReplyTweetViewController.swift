@@ -29,7 +29,7 @@ class ReplyTweetViewController: UIViewController, UITextViewDelegate {
         tweetText.layer.cornerRadius = 8
         tweetText.layer.borderColor = UIColor .lightGrayColor().CGColor
         tweetButton.layer.cornerRadius = 2
-        //usernameLabel.text = tweet.user?.name
+        usernameLabel.text = tweet.user?.name
         
 
 
