@@ -60,6 +60,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             return tweets!.count
         }
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PushCellDetail"{
+            let cell = sender as! TweetCell
+            let tweet = cell.tweet
+            let destinationViewController = segue.destinationViewController as! DetailTweetViewController
+            destinationViewController.tweet = tweet
+        }
+        
+        if segue.identifier == "ReplyPush"
+        {
+            let cell = sender as! TweetCell
+            let tweet = cell.tweet
+            let destinationViewController = segue.destinationViewController as! ReplyTweetViewController
+            destinationViewController.tweet = tweet
+            
+        }}
     /*
     // MARK: - Navigation
 
