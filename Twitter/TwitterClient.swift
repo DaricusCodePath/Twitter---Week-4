@@ -91,12 +91,32 @@ class TwitterClient: BDBOAuth1SessionManager
         )
     }
     
+    func unretweet(id: Int, params: NSDictionary?, completion: (error: NSError?) -> () ){
+        POST("1.1/statuses/unretweet/\(id).json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("UnRetweetID: \(id)")
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("UNRT failure")
+                completion(error: error)
+            }
+        )
+    }
+    
     func favTweet(id: Int, params: NSDictionary?, completion: (error: NSError?) -> () ){
         POST("1.1/favorites/create.json?id=\(id)", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             print("FavouriteID: \(id)")
             completion(error: nil)
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("Favoriting did not work")
+                completion(error: error)
+            }
+        )}
+    func unfavTweet(id: Int, params: NSDictionary?, completion: (error: NSError?) -> () ){
+        POST("1.1/favorites/destroy.json?id=\(id)", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            print("UnFavouritedID: \(id)")
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("UnFavoriting did not work")
                 completion(error: error)
             }
         )}

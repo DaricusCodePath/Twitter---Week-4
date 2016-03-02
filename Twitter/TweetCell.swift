@@ -86,14 +86,16 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func onRetweet(sender: AnyObject) {
-    TwitterClient.sharedInstance.retweet(Int(tweetID), params: nil, completion: {(error) -> () in
         
         if (self.retweetButton.currentImage == UIImage(named: "retweet-action") ) {
+            TwitterClient.sharedInstance.retweet(Int(self.tweetID), params: nil, completion: {(error) -> () in
+                })
             self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
             self.retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: .Normal)
             
         }else{
-            
+            TwitterClient.sharedInstance.unretweet(Int(self.tweetID), params: nil, completion: {(error) -> () in
+            })
             self.retweetLabel.text = String(self.tweet.retweetCount!)
             self.retweetButton.setImage(UIImage(named: "retweet-action"), forState: .Normal )
         }
@@ -109,7 +111,7 @@ class TweetCell: UITableViewCell {
         
         
         
-    })
+    
     }
 }
 

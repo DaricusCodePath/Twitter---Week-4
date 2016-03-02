@@ -77,7 +77,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let destinationViewController = segue.destinationViewController as! ReplyTweetViewController
             destinationViewController.tweet = tweet
             
-        }}
+        }
+        if segue.identifier == "profilePush"
+        {
+            let cell = sender!.superview!!.superview as! TweetCell
+            let tweet = cell.tweet
+            let destinationViewController = segue.destinationViewController as! ProfileViewController
+            destinationViewController.tweet = tweet
+            
+        }
+    }
     /*
     // MARK: - Navigation
 
