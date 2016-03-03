@@ -19,7 +19,11 @@ class DetailTweetViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     
+    @IBOutlet weak var favouriteButton: UIButton!
     
+    @IBOutlet weak var favouriteLabel: UILabel!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var retweetLabel: UILabel!
     var tweet: Tweet!
     var tweetID: Int = 0
 
@@ -43,6 +47,51 @@ class DetailTweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onFavourite(sender: AnyObject) {
+        TwitterClient.sharedInstance.favTweet(Int(tweetID), params: nil, completion: {(error) -> () in
+            
+            
+            if (self.favouriteButton.currentImage == UIImage(named: "like-action") ) {
+                self.favouriteLabel.text = String(self.tweet.favouritesCount! + 1)
+                self.favouriteButton.setImage(UIImage(named: "like-action-on"), forState: .Normal)
+                
+            }else{
+                
+                self.favouriteLabel.text = String(self.tweet.favouritesCount!)
+                self.favouriteButton.setImage(UIImage(named: "like-action"), forState: .Normal )
+            }
+            
+        })
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        
+        if (self.retweetButton.currentImage == UIImage(named: "retweet-action") ) {
+            TwitterClient.sharedInstance.retweet(Int(self.tweetID), params: nil, completion: {(error) -> () in
+            })
+            self.retweetLabel.text = String(self.tweet.retweetCount! + 1)
+            self.retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: .Normal)
+            
+        }else{
+            TwitterClient.sharedInstance.unretweet(Int(self.tweetID), params: nil, completion: {(error) -> () in
+            })
+            self.retweetLabel.text = String(self.tweet.retweetCount!)
+            self.retweetButton.setImage(UIImage(named: "retweet-action"), forState: .Normal )
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
     /*
     // MARK: - Navigation

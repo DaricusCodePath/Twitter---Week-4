@@ -20,15 +20,15 @@ class ReplyTweetViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         
         self.tweetText.delegate = self
         
-        
+        var nameInfo = "@\(tweet.user!.screenname!)" as? String
         
         tweetText.layer.borderWidth = 1
         tweetText.layer.cornerRadius = 8
         tweetText.layer.borderColor = UIColor .lightGrayColor().CGColor
-        tweetText.insertText((tweet.user?.screenname)!)
+        tweetText.insertText(nameInfo!)
         tweetButton.layer.cornerRadius = 2
         usernameLabel.text = tweet.user?.name
         
@@ -55,6 +55,13 @@ class ReplyTweetViewController: UIViewController, UITextViewDelegate {
         
     }
     @IBAction func onReply(sender: AnyObject) {
+        if tweetText != nil {
+            let tweet = tweetText.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            
+            
+            
+            TwitterClient.sharedInstance.tweeting(tweet!)
+        }
     }
     
 
