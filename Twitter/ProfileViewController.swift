@@ -13,13 +13,19 @@ class ProfileViewController: UIViewController {
     var tweet: Tweet!
 
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var favoriteCount: UILabel!
+    @IBOutlet weak var followersCount: UILabel!
+    @IBOutlet weak var FollowingCount: UILabel!
+    @IBOutlet weak var TweetCount: UILabel!
+    @IBOutlet weak var BackgroundProfile: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         profileImageView.setImageWithURL(NSURL(string: tweet.user!.profileUrlString!)!)
-        favoriteCount.text = String(tweet.user!.followersCount! as Int)
-        print(tweet.user?.followersCount)
+        followersCount.text = String(tweet.user!.followersCount! as Int)
+        FollowingCount.text = String(tweet.user!.followingCount! as Int)
+        TweetCount.text = String(tweet.user!.TweetCount! as Int)
+        BackgroundProfile.setImageWithURL(NSURL(string: tweet.user!.BackGround!)!)
+        //print(tweet.user?.followersCount)
   
 
         // Do any additional setup after loading the view.
